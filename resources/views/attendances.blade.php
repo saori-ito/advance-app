@@ -31,35 +31,35 @@
                     <table class="form-item1">
                         <thead>
                         <tr>
-                            <th class="form-item3">名前</th>
                             <th>日付</th>
+                            <th class="form-item3">名前</th>
                             <th>勤務開始</th>
                             <th>勤務終了</th>
+                            <th>勤務時間</th>
                             <th>休憩開始</th>
                             <th>休憩終了</th>
-                            <th>勤務時間</th>
                             <th>休憩時間</th>
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach ($users as $user)
-                            @foreach ($user->rests as $rest)
-                                <tr>
-                                    <td>{{ $user->name }}</td>
-                                    <td>{{ $rest->time->date }}</td>
-                                    <td>{{ $rest->time->punch_in }}</td>
-                                    <td>{{ $rest->time->punch_out }}</td>
+                        @foreach ($times as $time)
+                            <tr>
+                                <td>{{ $time->date }}</td>
+                                <td>{{ $time->user->name }}</td>
+                                <td>{{ $time->punch_in }}</td>
+                                <td>{{ $time->punch_out }}</td>
+                                <td>{{ $time->working_hour }}</td>
+                                @foreach ($time->rests as $rest)
                                     <td>{{ $rest->break_start }}</td>
                                     <td>{{ $rest->break_end }}</td>
-                                    <td>{{ $rest->working_hour }}</td>
-                                    <td>{{ $rest->time->break_hour }}</td>
-                                </tr>
-                            @endforeach
+                                    <td>{{ $rest->break_hour }}</td>
+                                @endforeach
+                            </tr>
                         @endforeach
                         </tbody>
                     </table>
                 </div>
-                {{ $users->appends(request()->query())->links()}}
+                {{ $times->appends(request()->query())->links()}}
             </div>
         </div>
     </div>

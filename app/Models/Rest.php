@@ -11,6 +11,21 @@ class Rest extends Model
     use HasFactory;
 
     /**
+     * 複数代入不可能な属性
+     *
+     * @var array
+     */
+    protected $guarded = [];
+
+    /**
+     *　 ユーザーを取得
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    /**
      *　勤怠を取得
      */
     public function time()
@@ -19,14 +34,15 @@ class Rest extends Model
     }
 
     /**
-     * 勤務時間
+     * 休憩時間
      *
      */
-    public function getWorkingHourAttribute()
+    public function getBreakHourAttribute()
+
     {
-        $punchIn = Carbon::parse($this->punch_in);
-        $punchOut = Carbon::parse($this->punch_out);
-        return $punchOut->diffInHours($punchIn);
+        $breakStart = Carbon::parse($this->break_start);
+        $breakEnd = Carbon::parse($this->break_end);
+        return $breakStart->diffInHours($breakEnd);
     }
 
 }

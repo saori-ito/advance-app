@@ -29,7 +29,7 @@ class RestTableSeeder extends Seeder
         Time::truncate();
         Rest::truncate();
 
-        Rest::factory()->count(10)->create();
+        Rest::factory()->count(20)->create();
 
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 

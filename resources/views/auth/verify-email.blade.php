@@ -49,9 +49,9 @@
         </div>
 
         @if (session('status') == 'verification-link-sent')
-        <div class="resend_email_message">
-            {{ __('登録時に指定したメールアドレスに新しい確認リンクが送信されました。') }}
-        </div>
+            <div class="resend_email_message">
+                {{ __('登録時に指定したメールアドレスに新しい確認リンクが送信されました。') }}
+            </div>
         @endif
 
         <div class="button_layout">
